@@ -66,7 +66,7 @@ function validaPlaca(e) {
 key = e.keyCode || e.which; 
 tecla = String.fromCharCode(key).toString();
  //Se define todo lo que se quiere que se muestre
-caracter = "abcdefghijklmnñopqrstuvwxyz0123456789$.@-_;\n";
+caracter = "abcdefghijklmnñopqrstuvwxyz0123456789$.@-_;";
 especiales = [8, 37, 39, 46, 6]; 
 
 tecla_especial = false; 
