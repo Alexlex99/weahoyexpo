@@ -31,7 +31,7 @@ function soloLetras(e){
                         function soloLetras(e){
                 key = e.keyCode || e.which;
                 tecla = String.fromCharCode(key).toLowerCase();
-                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz.;><()$,\n";
+                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
                 especiales = [8];
 
                 tecla_especial = false
@@ -62,3 +62,22 @@ function soloLetras(e){
                 if(letras.indexOf(tecla)==-1 && !tecla_especial)
                 return false;
             }
+function validaPlaca(e) {
+key = e.keyCode || e.which; 
+tecla = String.fromCharCode(key).toString();
+ //Se define todo lo que se quiere que se muestre
+caracter = "abcdefghijklmnñopqrstuvwxyz0123456789$.@-_;\n";
+especiales = [8, 37, 39, 46, 6]; 
+
+tecla_especial = false; 
+for (var i in especiales) {
+      if(key == especiales[i]) { 
+    tecla_especial = true; 
+     break; 
+      }
+} 
+if(caracter.indexOf (tecla) == -1 && !tecla_especial){ 
+    alert('Tecla no aceptada'); 
+    return false; 
+}
+}
