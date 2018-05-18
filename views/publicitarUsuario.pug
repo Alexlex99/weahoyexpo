@@ -10,8 +10,7 @@ html
     link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
     link(rel='stylesheet', type='text/css', href='css/estilos.css')
     link(rel='stylesheet', type='text/css', href='css/snackbar.css')
-  body#indexInvitado
-    nav.navbar.sticky-top.navbar-expand-md.navbar-light(id='barraNavegacion')
+body#indexInvitado.sesion(ondrag="return false" ondrop="return false;" oncopy="return false" onpaste="return false")    nav.navbar.sticky-top.navbar-expand-md.navbar-light(id='barraNavegacion')
       a.navbar-brand(href='indexUsuario')
         img(src='../img/logo.png', height='25', alt='')
         |  Contrata.me
@@ -37,10 +36,10 @@ html
           li.navbar-item
             a.nav-link(href='../logout') Salir
     form(id='ewe')
-      #bleh.m-4
+      .m-4
         .rounded.border.border-dark.mb-2.p-2
           .form-row
-            .col.border.disabled.border-dark.border-left-0.border-top-0.border-bottom-0
+            #bleh.col.border.disabled.border-dark.border-left-0.border-top-0.border-bottom-0
               p!= nombre+' '+apellidos
             .col.border.border-dark.border-left-0.border-top-0.border-bottom-0
               input.form-control.form-control-sm#pubtype(type='text', name='pubtype', onkeypress='return soloLetras(event)', placeholder='Tipo de trabajo')
