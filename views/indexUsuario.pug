@@ -1,0 +1,61 @@
+doctype html
+html
+  head
+    title Inicio
+    meta(charset='utf-8')
+    meta(name='viewport', content='height=device-height,initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css', integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M', crossorigin='anonymous')
+    link(rel='icon', href='../img/logo.png')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='../css/estilos.css')
+  body#indexInvitado
+    nav.navbar.fixed-top.navbar-expand-md.navbar-light(id='barraNavegacion')
+      a.navbar-brand(href='indexUsuario')
+        img(src='../img/logo.png', height='25', alt='')
+        |  Contrata.me
+      button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#contrataNav', aria-controls='contrataNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#contrataNav
+        ul.navbar-nav
+          li.navbar-item
+            a.nav-link.active(href='indexUsuario') Inicio
+            span.sr-only (actual)
+        form.form-inline(action='/busqueda', method='POST')
+          .dropdown.show
+            input#navSearch.form-control.mr-sm-2.dropdown-toggle(aria-expanded='false', aria-haspopup='true', role='searchbox', type='text', autocomplete='off', placeholder='Buscar trabajador', aria-label='Buscar', style='width: 30vw', name='bus')
+            .dropdown-menu#resSearch(aria-labelledby='navSearch')
+              a.dropdown-item(href='#') 
+          button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Buscar
+        ul.navbar-nav.ml-auto
+          li.navbar-item
+            a.nav-link(href='publicitarUsuario') Publicítate
+          li.navbar-item
+            a.nav-link(href='perfilUsuario') Perfil
+             li.navbar-item
+            a.nav-link(href='agregaroferta.html') Ofertar
+          li.navbar-item
+            a.nav-link(href='../logout') Salir
+    div
+      #jumbo.jumbotron
+        .row.no-gutters(style='height: 35vh')
+        .row.no-gutters
+          .col.text-center.text-justify
+            h1
+              | Encuentra al trabajador que necesitas
+              br
+              | de la manera más rápida
+      .anuncio(id='indexInvitado')
+        br
+        .container
+          each item in rows
+            .row
+              .col-3
+                img.img-thumbnail.float-left.mr-2.mt-1(src='../img/user.png', style='width: 100%')
+              .col
+                a(href='visualizarContraUsuario?id='+item.id_usu).h3!=item.trabajoarealizar
+                p.text-justify.p-3!=item.despublic
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', integrity='sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', integrity='sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1', crossorigin='anonymous')
+    script(src='../js/barraBusqueda.js')
+    script(src='../js/valida.js')

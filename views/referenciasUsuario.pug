@@ -1,0 +1,64 @@
+doctype html
+html
+  head
+    title Referencias
+    meta(charset='utf-8')
+    meta(name='viewport', content='height=device-height,initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css', integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M', crossorigin='anonymous')
+    link(rel='icon', href='../img/logo.png')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='css/estilos.css')
+  body#indexInvitado
+    nav.navbar.sticky-top.navbar-expand-md.navbar-light(id='barraNavegacion')
+      a.navbar-brand(href='indexUsuario')
+        img(src='../img/logo.png', height='25', alt='')
+        |  Contrata.me
+      button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#contrataNav', aria-controls='contrataNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#contrataNav
+        ul.navbar-nav
+          li.navbar-item
+            a.nav-link.active(href='indexUsuario') Inicio
+        form.form-inline(action='/busqueda', method='POST')
+          .dropdown.show
+            input#navSearch.form-control.mr-sm-2.dropdown-toggle(aria-expanded='false', aria-haspopup='true', role='searchbox', type='text', autocomplete='off', placeholder='Buscar trabajador', aria-label='Buscar', style='width: 30vw', name='bus')
+            .dropdown-menu#resSearch(aria-labelledby='navSearch')
+          button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Buscar
+        ul.navbar-nav.ml-auto
+          li.navbar-item
+            a.nav-link(href='publicitarUsuario') Publicítate
+          li.navbar-item
+            a.nav-link.active(href='perfilUsuario') Perfil
+            li.navbar-item
+            a.nav-link(href='../agregaroferta.html') Ofertar
+            span.sr-only (actual)
+          li.navbar-item
+            a.nav-link(href='../logout') Salir
+    .d-inline-block.p-5
+      div
+        img.rounded(src=''+img, style='width: 10vw')
+        .invisible
+          | Que tranza, jaja
+          br
+          | jejejej
+    .d-inline-block.mt-4(style='width: 80vw')
+      .rounded.border.border-dark.mb-2.p-2
+        h5!= nombre+' '+apellidos
+        hr
+        #Ref
+          each item in calf
+            -var ca = item.calif+'0'
+            -var cas = 100-ca
+            .row.m-2
+              .col-2.text-center.py-4
+                a(href='/visualizarContraUsuario?id='+item.idcalifica) Contactar
+              .col-4.text-justify.p-2!= item.comentario
+              .col
+                .progress(style='margin: 2px 0px 0px 0px; height: 50%')
+                  .progress-bar.bg-success(role='progress-bar', style='width: '+ca+'%; height: 100%', aria-valuenow=''+ca, aria-valuemin='0', aria-valuemax='100')
+                  .progress-bar.bg-danger(role='progress-bar', style='width: '+cas+'%; height: 100%', aria-valuenow=''+cas, aria-valuemin='0', aria-valuemax='100')
+      .invisible 7u7
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', integrity='sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', integrity='sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1', crossorigin='anonymous')
+    script(src='../js/barraBusqueda.js')

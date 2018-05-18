@@ -1,0 +1,67 @@
+doctype html
+html
+  head
+    title Calificar trabajador
+    meta(charset='utf-8')
+    meta(name='viewport', content='height=device-height,initial-scale=1')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css', integrity='sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M', crossorigin='anonymous')
+    link(rel='icon', href='../img/logo.png')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='../css/estilos.css')
+    link(rel='stylesheet', type='text/css', href='../css/snackbar.css')
+  body#indexInvitado
+    nav.navbar.sticky-top.navbar-expand-md.navbar-light(id='barraNavegacion')
+      a.navbar-brand(href='indexUsuario')
+        img(src='../img/logo.png', height='25', alt='')
+        |  Contrata.me
+      button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#contrataNav', aria-controls='contrataNav', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      .collapse.navbar-collapse#contrataNav
+        ul.navbar-nav
+          li.navbar-item
+            a.nav-link.active(href='indexUsuario') Inicio
+        form.form-inline(action='/busqueda', method='POST')
+          .dropdown.show
+            input#navSearch.form-control.mr-sm-2.dropdown-toggle(aria-expanded='false', aria-haspopup='true', role='searchbox', type='text', autocomplete='off', placeholder='Buscar trabajador', aria-label='Buscar', style='width: 30vw', name='bus')
+            .dropdown-menu#resSearch(aria-labelledby='navSearch')
+              a.dropdown-item(href='#') 
+          button.btn.btn-outline-primary.my-2.my-sm-0(type='submit') Buscar
+        ul.navbar-nav.ml-auto
+          li.navbar-item
+            a.nav-link(href='publicitarUsuario') Publicítate
+          li.navbar-item
+            a.nav-link(href='perfilUsuario') Perfil
+            li.navbar-item
+            a.nav-link(href='../agregaroferta.html') Ofertar
+          li.navbar-item
+            a.nav-link(href='../logout') Salir
+    .container-fluid.text-center.p-3
+      img.rounded(src=''+usu.img, style='width: 25vw')
+      p.h2!=usu.nombre+' '+usu.apellido
+    .container-fluid
+      .progress.mt-3(style='height: 8vh')
+        -var ca = 100 - calf
+        .progress-bar.bg-success(style='width: '+calf+'%; height: 100%', aria-valuenow=''+calf, aria-valuemin='0', aria-valuemax='100')
+        .progress-bar.bg-danger(style='width: '+ca+'%; height: 100%', aria-valuenow=''+ca, aria-valuemin='0', aria-valuemax='100')
+      -var asd = 'Éste usuario tiene una calificacion promedio de '+calf/10+' de '+cuenta+' usuarios que calificaron'
+      p.text-center.text-dark.p-3!= asd
+    form.container#myForm(style='border: 5px dotted #bbb')
+      #slidecontainer.text-center
+        p.d-inline Tu calificación hacia este trabajador:
+        p#calf.d-inline 5
+        input.slider#myRange(type='range', min='0', max='10', value='5')
+        input.d-none#myId(type='text', value=''+idCalifica)
+        input.d-none#hisId(type='text', value=''+usu.id_usu)
+      div
+        button.btn.btn-dark.my-2.col(href='#coment', data-toggle='collapse', aria-expanded='false', aria-controls='coment') Comentarios
+      .collapse#coment(style='height: 10vh')
+        textarea.form-control.my-3(name='txtA', id='txtA', onkeypress='return Todos(event)', placeholder='Escribe tus comentarios', rows='3')
+      .mb-3
+        input.col.btn.btn-dark.ml-auto(type='button', value='Calificar', name='btnA', id='btnA')
+    div#snackbar
+    script(type='text/javascript', src='../js/slider.js')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js', integrity='sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js', integrity='sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1', crossorigin='anonymous')
+    script(src='../js/barraBusqueda.js')
+    script(src='../js/valida.js')

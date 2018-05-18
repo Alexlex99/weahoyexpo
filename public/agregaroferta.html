@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Oferta</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="height=device-height, initial-scale=1.0">
+	<script type="text/javascript" src="css/bootstrap.css"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+	<link rel="icon" href="img/logo.png">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="css/estilos.css">
+	<link rel="stylesheet" type="text/css" href="css/snackbar.css">
+</head>
+<body id="indexInvitado">
+	<nav class="navbar sticky-top navbar-expand-md navbar-light" id="barraNavegacion"><a class="navbar-brand" href="indexUsuario"><img src="../img/logo.png" height="25" alt=""> Contrata.me</a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#contrataNav" aria-controls="contrataNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="contrataNav"><ul class="navbar-nav"><li class="navbar-item"><a class="nav-link active" href="indexUsuario">Inicio</a></li></ul><form class="form-inline" action="/busqueda" method="POST"><div class="dropdown show"><input class="form-control mr-sm-2 dropdown-toggle" id="navSearch" aria-expanded="false" aria-haspopup="true" role="searchbox" type="text" autocomplete="off" placeholder="Buscar trabajador" aria-label="Buscar" style="width: 30vw;" name="bus"><div class="dropdown-menu" id="resSearch" aria-labelledby="navSearch"></div></div><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Buscar</button></form><ul class="navbar-nav ml-auto"><li class="navbar-item"><a class="nav-link active" href="publicitarUsuario">Publicítate</a><span class="sr-only">(actual)</span></li><li class="navbar-item"><a class="nav-link" href="perfilUsuario">Perfil</a></li><li class="navbar-item"><a class="nav-link" href="../logout">Salir</a></li></ul></div></nav>
+		<br>
+	<div>
+		<br>
+		<br>
+		<div class="container">
+			<h1 class="display-4">Publica una Oferta</h1>
+		</div>
+		<div class="container p-4 border border-dark rounded">
+			<form>
+				<div class="row">
+					<div class="col-2">Titulo</div>
+					<div class="col"><input class="form-control" type="text" name="tit" style="width: 100%" onkeypress="return soloLetras(event)" placeholder="Ej: Solicito Plomeros" maxlength="20"></div>
+				</div>			
+				<div class="row" style="height: 5vh"></div>
+				<div class="row">
+					<div class="col-2">Trabajo a ofertar</div>
+					<div class="col"><input class="form-control" type="text" name="Trabajo" style="width: 100%" onkeypress="return soloLetras(event)" placeholder="EJ: Reparación de Muebles" maxlength="50"></div>
+				</div>
+				<div class="row" style="height: 5vh"></div>
+				<div class="row">
+					<div class="col-2">Contacto</div>
+					<div class="col"><input class="form-control" type="text" name="Contacto" style="width: 100%" onkeypress="return valida(event)" placeholder="Ej:555595857" maxlength="13"></div>
+				</div>
+				<div class="row" style="height: 5vh"></div>
+				<div class="row">
+					<div class="col" id="button1">
+						<input type="button" class="btn btn-outline-dark" value="Ofertar" name="ofer-submit" id="Enviaroferta"></div>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div id="snackbar"></div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('#Enviaroferta').on('click',function(){
+				var formData={
+					'tit': $('input[name=tit]').val(),
+					'Trabajo': $('input[name=Trabajo]').val(),
+					'Contacto':$('input[name=Contacto]').val(),					
+				};
+				$.ajax({
+					url:'/agregarOferta',
+					type:'POST',
+					cache:false,
+					data: formData,
+					success: function(data){
+						$('#snackbar').addClass("show").html("<strong>Oferta creada</strong>");
+						setTimeout(function(){
+							$('#snackbar').removeClass("show");
+						},3000);
+					},
+					error: function(jqXHR,textStatus,err){
+						$('#snackbar').addClass("show").html("<strong>Error. Intente de nuevo más tarde. <br> Si el problema persiste, contacte a un administrador</strong>");
+						setTimeout(function(){
+							$('#snackbar').removeClass("show");
+						},3000);
+					}
+				});
+			});
+
+		});
+		function valida(e){
+                    	tecla = (document.all) ? e.keyCode : e.which;
+
+                    	//Tecla de retroceso para borrar, siempre la permite
+                    	if (tecla==8){
+	                        return true;
+    	                }
+                        
+                    // Patron de entrada, en este caso solo acepta numeros
+        	            patron =/[0-9]/;
+            	        tecla_final = String.fromCharCode(tecla);
+                	    return patron.test(tecla_final);
+                	} 
+                	function soloLetras(e){
+                key = e.keyCode || e.which;
+                tecla = String.fromCharCode(key).toLowerCase();
+                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+                especiales = [8];
+
+                tecla_especial = false
+                for(var i in especiales){
+                    if(key == especiales[i]){
+                        tecla_especial = true;
+                        break;
+                    } 
+                }
+
+                if(letras.indexOf(tecla)==-1 && !tecla_especial)
+                return false;
+            }
+            function soloLetras(e){
+                key = e.keyCode || e.which;
+                tecla = String.fromCharCode(key).toLowerCase();
+                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz";
+                especiales = [8];
+
+                tecla_especial = false
+                for(var i in especiales){
+                    if(key == especiales[i]){
+                        tecla_especial = true;
+                        break;
+                    } 
+                }
+
+                if(letras.indexOf(tecla)==-1 && !tecla_especial)
+                return false;
+            }
+	</script>
+</body>
+</html>

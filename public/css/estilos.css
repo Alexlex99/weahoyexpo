@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css?family=Vollkorn SC');
+
+#eslogan{
+    font-family: 'Vollkorn SC';
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+#indexInvitado{
+    background-color: #B8CBD6;
+    color: white;
+}
+
+#indexInvitado input[type=button]{
+    color: white;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+}
+
+#bleh{
+    background-color: #4685B5;
+    color: white;
+}
+
+#indexInvitado input[type=button]:hover {
+    border-radius: 5px;
+}
+
+#indexInvitado input[type=text], input[type=password], input[type=email] {
+    height:60%;
+    background-color: #ffffff;
+    color: black;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+#indexInvitado input[type=text]:focus, [type=text]:focus, [type=text]:focus {
+    background-color: white;
+    color: black;
+}
+
+#barraNavegacion, #barraNavegacion a{
+    background-color: #31638F;
+    border: 2px;
+    border-radius: 15px;
+    color: white;
+}
+
+#barraNavegacion{
+    width: 100%;
+}
+
+#navsearch{
+    color: black;
+    background-color: white;
+}
+
+#jumbo{
+	background-color: #B8CBD6;
+	height: 100vh;
+    color:  #000000;
+}
+
+/*inician las etiquetas del codigo pug*/
+
+/*busquedatrabajadoresusuario.puh*/
+
+#resultados{
+    /*Esta es la parte donde los resultados de busqueda de usuarios en tablas aparecen*/
+}
+
+/*modificaDatosUsuario.pug*/
+
+#bleh2{
+    /*Esta es la parte donde van los form de cambio de datos*/
+}
+
+/*referenciasUsuario.pug*/
+#ref{
+    /*Aqui se ven las referencias del trabajador*/
+    background-color: #4685B5;
+    color: white;
+}
+
+.anuncio{
+	background-color: #A96E0C;
+}
+.registro{
+	background-color: #2390F6;
+}
+.sesion{
+	background-color: #2390F6;
+}
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;   
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #4CAF50;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+}
