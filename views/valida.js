@@ -48,7 +48,7 @@ function soloLetras(e){
             function Todos(e){
                 key = e.keyCode || e.which;
                 tecla = String.fromCharCode(key).toLowerCase();
-                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890";
+                letras = " áéíóúabcdefghijklmnñopqrstuvwxyz1234567890,.;$";
                 especiales = [8];
 
                 tecla_especial = false
